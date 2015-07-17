@@ -33,7 +33,7 @@ RESOLUTION := 720x1280
 # If the boot.img or recovery.img exists, the system of build will use a prebuilt boot.img or recovery.img.
 # If the boot.img or recovery.img doesn't exists, the system of build will do nothing.
 #-----------------------------------------------------------------------------
-#vendor_modify_images := boot
+vendor_modify_images := boot
 
 ##############################################################################
 # The value decides the directory which you want to remove in the vendor directory for the ota package.
@@ -48,13 +48,13 @@ RESOLUTION := 720x1280
 # You can configure the file name which relative to the vendor/system directory.
 #-----------------------------------------------------------------------------
 #vendor_remove_files := bin/zchgd
-
+#vendor_remove_dirs :=vendor/bundled-app
 ##############################################################################
 # The value decides the vendor apk which you want to save in the vendor directory for the ota package.
 # The default value is Bluetooth.
 # You can configure the apk name in the vendor/system/app or vendor/system/pri-app directory.
 #-----------------------------------------------------------------------------
-vendor_saved_apps := Bluetooth KeyChain HTMLViewer UserDictionaryProvider BackupRestoreConfirmation \
+vendor_saved_apps := Bluetooth Nfc KeyChain HTMLViewer UserDictionaryProvider BackupRestoreConfirmation \
                      FusedLocation PrintSpooler SharedStorageBackup  ExternalStorageProvider InputDevices \
                      ProxyHandler Shell DefaultContainerService
 
@@ -88,7 +88,7 @@ vendor_modify_jars := android.policy framework services telephony-common
 # The default value is nothing.
 # You can configure the board system file path which relative to the system directory in the board release.
 #-----------------------------------------------------------------------------
-board_saved_files := lib/libsqlite.so lib/libwebviewchromium.so
+#board_saved_files := lib/libsqlite.so lib/libwebviewchromium.so
 
 ##############################################################################
 # The value decides which board system apk you want to remove.
@@ -107,7 +107,7 @@ board_saved_files := lib/libsqlite.so lib/libwebviewchromium.so
 # The command idtoname how to use: first use "apktool d source/system/framework/framework-res.apk other/TMP/framework-res",
 # and then use "idtoname other/TMP/framework-res/res/values/public_master.xml XXXX/smali"(XXXX is the directory where you decode board system apk).
 #-----------------------------------------------------------------------------
-#board_modify_apps := SystemUI
+board_modify_apps := TeleService
 
 ##############################################################################
 # The value decides which jar you want to modify, when the jar is based on the board framework jar.
@@ -130,14 +130,14 @@ board_saved_files := lib/libsqlite.so lib/libwebviewchromium.so
 # If 1, hide the soft mainkeys. If 0, display the soft mainkeys.
 # You should configure the property according to your device.
 #override_property += \
-#    qemu.hw.mainkeys=0
+    qemu.hw.mainkeys=0
 
 
 # The property decide your ID on the backend server which statistical data for your device.
-# The default value is FlymeRomer.
-# You should configure the property according to your ID, ie, replace "FlymeRomer" with your ID.
-#override_property += \
-#    ro.flyme.romer=FlymeRomer
+# The default value is Flyme.
+# You should configure the property according to your ID, ie, replace "Flyme" with your ID.
+override_property += \
+    ro.flyme.romer=wwbhl
 
 ##############################################################################
 # The value decides which property you will remove from the build.prop.
